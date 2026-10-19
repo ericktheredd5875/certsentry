@@ -63,6 +63,7 @@ markers = ["live: hits real hosts on the internet (opt in with -m live)"]
 [tool.coverage.run]
 source = ["certsentry"]
 branch = true
+omit = ["src/certsentry/__main__.py"]
 
 [tool.coverage.report]
 show_missing = true
