@@ -122,8 +122,8 @@ src/certsentry/
   __init__.py
   __main__.py      # python -m certsentry
   cli.py           # Typer app; parses args, calls the core, sets the exit code
-  targets.py       # parses input lines -> Target(host, port)
-  models.py        # Target, CertInfo, Finding, CheckResult, Severity (enum)
+  target.py        # Target(host, port) (validates + normalizes itself); parses input lines
+  models.py        # CertInfo, Finding, CheckResult, Severity (enum)
   fetch.py         # async TLS connection -> raw cert data (the only network I/O)
   checks.py        # pure functions: CertInfo -> list[Finding]
   runner.py        # concurrency (asyncio.Semaphore / TaskGroup), orchestration
@@ -180,7 +180,7 @@ ordered enum so "worst result" is just `max()`.
 ## 11. Milestones
 
 1. [ ] Scaffold: uv project, src layout, ruff/mypy/pytest configs, pre-commit, CI green on an empty test
-2. [ ] `targets.py` + tests (input parsing)
+2. [ ] `target.py` + tests (`Target` model and input parsing)
 3. [ ] `models.py` (Severity enum, dataclasses)
 4. [ ] `fetch.py`: a single-host async fetch, run manually against a real site
 5. [ ] `checks.py` + full unit test coverage
